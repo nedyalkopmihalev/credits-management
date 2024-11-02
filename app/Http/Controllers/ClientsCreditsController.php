@@ -44,10 +44,21 @@ class ClientsCreditsController extends Controller
                 $customErrors['invalid_period'] = 'Въведете валиден период.';
             }
 
+            $totalAmount = $clientsCreditsModel->getTotalSumByClientId((int) $request->client_id);
+
+            if (!empty($totalAmount)) {
+                $totalAmountFormatted = sprintf('%0.2f', $totalAmount);
+
+                if (($totalAmountFormatted + trim($request->amount)) > 80000) {
+                    $customErrors['invalid_amount'] = 'Сумата по кредитите не трябва да е повече от 80000 лв.';
+                }
+            }
+
             $data = [
                 'client_id' => (int) $request->client_id,
                 'amount' => trim($request->amount),
-                'period' => trim($request->period)
+                'period' => trim($request->period),
+                'form_number' => $formNumber
             ];
 
             if (empty($customErrors)) {

@@ -32,4 +32,16 @@ class ClientsCredits extends Model
             ->orderByDesc('id')
             ->first();
     }
+
+    /**
+     * @param int $clientId
+     * @return mixed
+     */
+    public function getTotalSumByClientId(int $clientId)
+    {
+        return DB::table($this->clientsCreditsTable)
+            ->select('id')
+            ->where('client_id', $clientId)
+            ->sum('amount');
+    }
 }

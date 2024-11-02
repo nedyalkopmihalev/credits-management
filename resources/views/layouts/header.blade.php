@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         
-        <title>Epsilon</title>
+        <title>Credits Management</title>
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="/assets/dist/img/ico/favicon_1.png" type="image/x-icon">

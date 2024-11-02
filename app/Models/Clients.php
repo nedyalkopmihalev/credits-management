@@ -21,4 +21,15 @@ class Clients extends Model
         return DB::table($this->clientsTable)
             ->insertGetId($data);
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getClients()
+    {
+        return DB::table($this->clientsTable)
+            ->select('id', 'full_name')
+            ->orderBy('full_name')
+            ->get();
+    }
 }

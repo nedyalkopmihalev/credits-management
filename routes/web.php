@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\ClientsCreditsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::any('clients/client-insert', [ClientsController::class, 'clientInsert']);
+Route::any('clients-credits/client-credit-insert', [ClientsCreditsController::class, 'clientCreditInsert']);

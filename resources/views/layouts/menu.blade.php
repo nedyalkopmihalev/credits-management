@@ -27,6 +27,24 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="">
+                            <a href="/"><i class="glyphicon glyphicon-cog"></i> <span>кредит</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-success pull-right"></span>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#">кредит
+                                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="/clients-credits/client-credit-insert">добавяне</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div> <!-- /.sidebar -->
             </aside>          

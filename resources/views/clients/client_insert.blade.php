@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form name="form" method="post" action="client-insert" enctype="multipart/form-data">
+                            <form name="form" method="post" action="client-insert">
                                 @csrf
                                 <div class="form-group">
                                     <label for="input_full_name">Име на клиент *</label>

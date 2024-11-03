@@ -57,7 +57,7 @@ class ClientsCredits extends Model
     {
         return DB::table($this->clientsCreditsTable)
             ->join($this->clientsTable, $this->clientsCreditsTable . '.client_id', '=', $this->clientsTable . '.id')
-            ->select($this->clientsCreditsTable . '.id', $this->clientsCreditsTable . '.form_number', $this->clientsCreditsTable . '.amount', $this->clientsCreditsTable . '.period', $this->clientsTable . '.full_name')
+            ->select($this->clientsCreditsTable . '.id', $this->clientsCreditsTable . '.form_number', $this->clientsCreditsTable . '.amount', $this->clientsCreditsTable . '.period', $this->clientsCreditsTable . '.monthly_interest', $this->clientsTable . '.full_name')
             ->orderBy($this->clientsCreditsTable . '.id')
             ->get();
     }

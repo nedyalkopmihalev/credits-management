@@ -45,9 +45,9 @@
                                                 <td scope="row">@php echo $count @endphp</td>
                                                 <td>{{ $clientsCreditsItem->full_name }}</td>
                                                 <td>Credit-{{ $clientsCreditsItem->form_number }}</td>
-                                                <td>{{ $clientsCreditsItem->amount }}</td>
-                                                <td>{{ $clientsCreditsItem->period }}</td>
-                                                <td></td>
+                                                <td>{{ $clientsCreditsItem->amount }} лв.</td>
+                                                <td>{{ $clientsCreditsItem->period }} месеца</td>
+                                                <td>{{ $clientsCreditsItem->monthly_interest }} лв.</td>
                                             </tr>
                                             @php $count++; @endphp
                                         @endforeach

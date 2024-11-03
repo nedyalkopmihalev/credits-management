@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Clients;
 use App\Models\ClientsCredits;
+use App\Helpers\ClientsCreditsHelper;
 
 class ClientsCreditsController extends Controller
 {
+    const YEAR_MONTHS = 12;
+    const ANNUAL_INTEREST_RATE = 7.9;
+    const MAX_CREDIT  = 80000;
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -49,16 +54,19 @@ class ClientsCreditsController extends Controller
             if (!empty($totalAmount)) {
                 $totalAmountFormatted = sprintf('%0.2f', $totalAmount);
 
-                if (($totalAmountFormatted + trim($request->amount)) > 80000) {
+                if (($totalAmountFormatted + trim($request->amount)) > self::MAX_CREDIT) {
                     $customErrors['invalid_amount'] = 'Сумата по кредитите не трябва да е повече от 80000 лв.';
                 }
             }
+
+            $clientCreditMonthlyInterest = ClientsCreditsHelper::clientCreditMonthlyLoan(trim($request->amount), trim($request->period), self::ANNUAL_INTEREST_RATE);
 
             $data = [
                 'client_id' => (int) $request->client_id,
                 'amount' => trim($request->amount),
                 'period' => trim($request->period),
-                'form_number' => $formNumber
+                'form_number' => $formNumber,
+                'monthly_interest' => $clientCreditMonthlyInterest
             ];
 
             if (empty($customErrors)) {

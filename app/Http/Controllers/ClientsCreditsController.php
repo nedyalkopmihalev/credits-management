@@ -115,6 +115,8 @@ class ClientsCreditsController extends Controller
     public function clientsCreditsPayment(Request $request)
     {
         $successMessage = '';
+        $message = '';
+        $creditAmount = 0;
         $customErrors = [];
         $clientsCreditsModel = new ClientsCredits();
         $getAllClientsCredits = $clientsCreditsModel->getAllClientsCredits();
@@ -129,15 +131,31 @@ class ClientsCreditsController extends Controller
                 'amount.required' => 'Въведете сума.',
             ]);
 
+            $creditId = (int) $request->credit_id;
+            $amount = sprintf('%0.2f', trim($request->amount));
+
+            $creditAmountLoan = $clientsCreditsModel->getCreditAmountLoan($creditId);
+            $creditAmountLoan = sprintf('%0.2f', $creditAmountLoan->credit_amount_loan);
+
+            if ($amount > $creditAmountLoan) {
+                $creditAmount = 0;
+                $message = 'Успешно изплатената сума е: ' . $creditAmountLoan . ' лв.';
+            }
+
+            if ($amount < $creditAmountLoan) {
+                $creditAmount = $creditAmountLoan - $amount;
+                $creditAmount = sprintf('%0.2f', $creditAmount);
+                $message = 'Успешно изплатената сума е: ' . $amount . ' лв.';
+            }
+
             $data = [
-                'id' => (int) $request->credit_id,
-                'amount' => trim($request->amount),
+                'credit_amount_loan' => $creditAmount,
             ];
 
             if (empty($customErrors)) {
                 try {
-
-                    $successMessage = 'Плащането е извършено успешно.';
+                    $clientsCreditsModel->updateCreditAmountLoan($creditId, $data);
+                    $successMessage = $message;
                 } catch (\Exception $e) {
                     $customErrors['exceptionMessage'] = $e->getMessage();
                 }

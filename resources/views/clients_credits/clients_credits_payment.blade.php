@@ -70,6 +70,9 @@
                                     <input type="text" class="form-control" id="input_amount" aria-describedby="inputAmount" placeholder="Въведете сума" name="amount" value="">
                                     <small id="inputAmountHelp" class="text-muted">Задължително поле</small>
                                 </div>
+
+                                <div class="margin_bottom_css"></div>
+                                <input type="submit" name="save" value="запис" class="btn btn-primary w-md m-b-5" />
                             </form>
                         </div>
                     </div>

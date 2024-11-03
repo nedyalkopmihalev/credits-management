@@ -61,4 +61,27 @@ class ClientsCredits extends Model
             ->orderBy($this->clientsCreditsTable . '.id')
             ->get();
     }
+
+    /**
+     * @param int $id
+     * @return Model|null|object|static
+     */
+    public function getCreditAmountLoan(int $id)
+    {
+        return DB::table($this->clientsCreditsTable)
+            ->select('credit_amount_loan')
+            ->where('id', $id)
+            ->first();
+    }
+
+    /**
+     * @param int $id
+     * @param array $data
+     */
+    public function updateCreditAmountLoan(int $id, array $data)
+    {
+        DB::table($this->clientsCreditsTable)
+            ->where('id', $id)
+            ->update($data);
+    }
 }

@@ -17,4 +17,5 @@ use App\Http\Controllers\ClientsCreditsController;
 
 Route::any('clients/client-insert', [ClientsController::class, 'clientInsert']);
 Route::any('clients-credits/client-credit-insert', [ClientsCreditsController::class, 'clientCreditInsert']);
-Route::any('/', [ClientsCreditsController::class, 'getAllClientsCredits']);
+Route::get('/', [ClientsCreditsController::class, 'getAllClientsCredits']);
+Route::any('clients-credits/clients-credits-payment', [ClientsCreditsController::class, 'clientsCreditsPayment']);

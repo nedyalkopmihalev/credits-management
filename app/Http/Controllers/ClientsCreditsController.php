@@ -97,4 +97,46 @@ class ClientsCreditsController extends Controller
             'clientsCredits' => $getAllClientsCredits
         ]);
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function clientsCreditsPayment(Request $request)
+    {
+        $successMessage = '';
+        $customErrors = [];
+        $clientsCreditsModel = new ClientsCredits();
+        $getAllClientsCredits = $clientsCreditsModel->getAllClientsCredits();
+
+        //request data
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'credit_id' => 'required',
+                'amount' => 'required',
+            ], [
+                'credit_id.required' => 'Изберете клиент.',
+                'amount.required' => 'Въведете сума.',
+            ]);
+
+            $data = [
+                'id' => (int) $request->credit_id,
+                'amount' => trim($request->amount),
+            ];
+
+            if (empty($customErrors)) {
+                try {
+
+                    $successMessage = 'Плащането е извършено успешно.';
+                } catch (\Exception $e) {
+                    $customErrors['exceptionMessage'] = $e->getMessage();
+                }
+            }
+        }
+
+        return view('clients_credits.clients_credits_payment', [
+            'clientsCredits' => $getAllClientsCredits,
+            'successMessage' => $successMessage,
+            'customErrors' => $customErrors
+        ]);
+    }
 }

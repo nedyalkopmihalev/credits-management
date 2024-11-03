@@ -54,8 +54,8 @@ class ClientsCreditsController extends Controller
             if (!empty($totalAmount)) {
                 $totalAmountFormatted = sprintf('%0.2f', $totalAmount);
 
-                if (($totalAmountFormatted + trim($request->amount)) > self::MAX_CREDIT) {
-                    $customErrors['invalid_amount'] = 'Сумата по кредитите не трябва да е повече от 80000 лв.';
+                if (($totalAmountFormatted + sprintf('%0.2f', trim($request->amount))) > self::MAX_CREDIT) {
+                    $customErrors['invalid_amount'] = 'Сумата по кредитите не трябва да е повече от ' . self::MAX_CREDIT . ' лв.';
                 }
             }
 

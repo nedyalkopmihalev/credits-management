@@ -11,14 +11,14 @@
                     <!-- sidebar menu -->
                     <ul class="sidebar-menu">
                         <li class="">
-                            <a href="/"><i class="glyphicon glyphicon-cog"></i> <span>клинети</span>
+                            <a href="/"><i class="glyphicon glyphicon-cog"></i> <span>клиенти</span>
                                 <span class="pull-right-container">
                                     <span class="label label-success pull-right"></span>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="#">клинети
+                                    <a href="#">клиенти
                                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                                     </a>
                                     <ul class="treeview-menu">

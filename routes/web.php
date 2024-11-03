@@ -15,9 +15,6 @@ use App\Http\Controllers\ClientsCreditsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::any('clients/client-insert', [ClientsController::class, 'clientInsert']);
 Route::any('clients-credits/client-credit-insert', [ClientsCreditsController::class, 'clientCreditInsert']);
+Route::any('/', [ClientsCreditsController::class, 'getAllClientsCredits']);

@@ -69,6 +69,12 @@ class ClientsCreditsController extends Controller
                     $customErrors['exceptionMessage'] = $e->getMessage();
                 }
             }
+
+            $maxFormNumber = $clientsCreditsModel->getMaxFormNumber();
+
+            if (!empty($maxFormNumber)) {
+                $formNumber = $maxFormNumber->form_number + 1;
+            }
         }
 
         return view('clients_credits.client_credit_insert', [
@@ -76,6 +82,19 @@ class ClientsCreditsController extends Controller
             'form_number' => $formNumber,
             'successMessage' => $successMessage,
             'customErrors' => $customErrors
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function getAllClientsCredits()
+    {
+        $clientsCreditsModel = new ClientsCredits();
+        $getAllClientsCredits = $clientsCreditsModel->getAllClientsCredits();
+
+        return view('clients_credits.clients_credits_view', [
+            'clientsCredits' => $getAllClientsCredits
         ]);
     }
 }

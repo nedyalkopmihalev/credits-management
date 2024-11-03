@@ -13,6 +13,11 @@ class ClientsCredits extends Model
     protected $clientsCreditsTable = 'clients_credits';
 
     /**
+     * @var string
+     */
+    protected $clientsTable = 'clients';
+
+    /**
      * @param array $data
      * @return mixed
      */
@@ -43,5 +48,17 @@ class ClientsCredits extends Model
             ->select('id')
             ->where('client_id', $clientId)
             ->sum('amount');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAllClientsCredits()
+    {
+        return DB::table($this->clientsCreditsTable)
+            ->join($this->clientsTable, $this->clientsCreditsTable . '.client_id', '=', $this->clientsTable . '.id')
+            ->select($this->clientsCreditsTable . '.id', $this->clientsCreditsTable . '.form_number', $this->clientsCreditsTable . '.amount', $this->clientsCreditsTable . '.period', $this->clientsTable . '.full_name')
+            ->orderBy($this->clientsCreditsTable . '.id')
+            ->get();
     }
 }

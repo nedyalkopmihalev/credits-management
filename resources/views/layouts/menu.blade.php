@@ -41,6 +41,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a href="/clients-credits/client-credit-insert">добавяне</a></li>
+                                        <li><a href="/">списък</a></li>
                                     </ul>
                                 </li>
                             </ul>

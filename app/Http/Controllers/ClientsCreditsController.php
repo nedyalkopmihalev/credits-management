@@ -59,14 +59,17 @@ class ClientsCreditsController extends Controller
                 }
             }
 
-            $clientCreditMonthlyInterest = ClientsCreditsHelper::clientCreditMonthlyLoan(trim($request->amount), trim($request->period), self::ANNUAL_INTEREST_RATE);
+            $clientCreditMonthlyLoan = ClientsCreditsHelper::clientCreditMonthlyLoan(trim($request->amount), self::ANNUAL_INTEREST_RATE);
+            $clientCreditMonthlyAmount = ClientsCreditsHelper::clientCreditMonthlyAmount(trim($request->amount), trim($request->period), $clientCreditMonthlyLoan);
+            $clientCreditAmount = ClientsCreditsHelper::clientCreditAmount(trim($request->amount), trim($request->period), $clientCreditMonthlyLoan);
 
             $data = [
                 'client_id' => (int) $request->client_id,
                 'amount' => trim($request->amount),
                 'period' => trim($request->period),
                 'form_number' => $formNumber,
-                'monthly_interest' => $clientCreditMonthlyInterest
+                'monthly_interest' => $clientCreditMonthlyAmount,
+                'credit_amount_loan' => $clientCreditAmount
             ];
 
             if (empty($customErrors)) {

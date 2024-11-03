@@ -10,9 +10,8 @@ class ClientsCreditsHelper
      */
     public static function clientCreditMonthlyLoan(float $creditAmount, float $annualInterestRate)
     {
-        $monthlyInterestRate = ($annualInterestRate / 12);
-        $monthlyInterestRate = $monthlyInterestRate / 100;
-        $monthlyInterestRate = sprintf('%0.2f', $monthlyInterestRate);
+        $monthlyInterestRate = ($annualInterestRate / 1200);
+        $monthlyInterestRate = sprintf('%0.4f', $monthlyInterestRate);
 
         $monthlyInterestRateAmount = $creditAmount * $monthlyInterestRate;
 

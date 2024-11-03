@@ -142,7 +142,7 @@ class ClientsCreditsController extends Controller
                 $message = 'Успешно изплатената сума е: ' . $creditAmountLoan . ' лв.';
             }
 
-            if ($amount < $creditAmountLoan) {
+            if ($amount <= $creditAmountLoan) {
                 $creditAmount = $creditAmountLoan - $amount;
                 $creditAmount = sprintf('%0.2f', $creditAmount);
                 $message = 'Успешно изплатената сума е: ' . $amount . ' лв.';
